@@ -17,8 +17,11 @@ pacman -S mingw-w64-ucrt-x86_64-qt6-5compat
 pacman -S mingw-w64-ucrt-x86_64-opencv
 
 # Mostrar directorios de instalación para
-# los flags de librerías (para g++)
+# cflags (g++)
 pkg-config --cflags opencv4
+
+# Mostrar flags para el linker
+pkg-config --libs opencv4
 ```
 
 >[!IMPORTANT]
@@ -64,8 +67,16 @@ int main(int argc, char** argv)
 
 **Compilación**
 ```Bash
-g++ ocv_install_verify.cpp -IC:/msys64/ucrt64/include/opencv4 -LC:/mysys2/ucrt64/bin -lopencv_core -lopencv_imgproc -lopencv_highgui -o ocv_install_verify 
+g++ ocv_install_verify.cpp -I C:/msys64/ucrt64/include/opencv4 -L C:/mysys2/ucrt64/bin -lopencv_core -lopencv_imgproc -lopencv_highgui -o ocv_install_verify 
 ```
+## Automaización del build
 
+`pkg-config` es una herramienta auxiliar que se utiliza al compilar aplicaciones y bibliotecas. Permite insertar las opciones correctas del compilador en la línea de comandos para que una aplicación pueda usar, por ejemplo, gcc -o test test.c `pkg-config --libs --cflags glib-2.0`, en lugar de codificar valores sobre dónde encontrar glib (u otras bibliotecas).
+Para ejecutar pkg-config desde CMD o PS se debe crear la siguiente variable de entorno:
+
+```C
+PKG_CONFIG_PATH = C:\mysys64\ucrt64\lib\pkgconfig
+```
+En una aplicación interesante con OpenCV se requerirá añadir diferentes flags para enlazar las librerías. Con está herramienta no tendrémos que preocuparnos por eso ya que encontrará a todas.
 
 **Nota**: Ctrl+Shift+V para previsualizar Markdown en VSC.
