@@ -77,6 +77,27 @@ Para ejecutar pkg-config desde CMD o PS se debe crear la siguiente variable de e
 ```C
 PKG_CONFIG_PATH = C:\mysys64\ucrt64\lib\pkgconfig
 ```
-En una aplicación interesante con OpenCV se requerirá añadir diferentes flags para enlazar las librerías. Con está herramienta no tendrémos que preocuparnos por eso ya que encontrará a todas.
+En una aplicación más compleja con OpenCV se requerirá añadir diferentes flags para enlazar las librerías. Con está herramienta no tendrémos que preocuparnos por eso ya que encontrará a todas. Se puede usar directamente en nuestro Makefile:
+
+```C
+# Variables para OpenCV (ajustar según tu instalación si es necesario)
+# 2>/dev/null redirige stderr a /dev/null si pkg-config no está instalado
+OPENCV_CFLAGS = $(shell pkg-config --cflags opencv4 2>/dev/null)
+OPENCV_LIBS   = $(shell pkg-config --libs opencv4 2>/dev/null)
+````
+
+**¿Por qué necesitamos estos flags?**
+
+Cuando utilizamos una función de OpenCV, por ejemplo `cv::imread()`, estamos haciendo un llamado a un archivo que está precompilado. En Linux estos objetos de librería tienen extenciones .so o .a y en Windows .dll. Se le debe indicar al Linker que archivos debe buscar para satisfacer los símbolos.
+
+En el caso de Windows, el directorio que agregamos con:
+```Bash
+-L C:/msys64/ucrt64/bin/ ../lib -l opencv_core
+```
+contiene los archivos dll, por ejemplo: libopencv_core.dll, mientras que el directorio C:/msys64/ucrt64/lib contiene los archivos dll.a como libopencv_core.dll.a
+
+En MSYS2 con UCRT:
+* El Linker usa: libopencv_core.dll.a
+* Tu app usa en tiempo de ejecución: libopencv_core.dll
 
 **Nota**: Ctrl+Shift+V para previsualizar Markdown en VSC.

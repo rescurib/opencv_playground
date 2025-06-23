@@ -15,10 +15,6 @@ TARGET = $(PROJECT_NAME).exe
 OPENCV_CFLAGS = $(shell pkg-config --cflags opencv4 2>/dev/null)
 OPENCV_LIBS   = $(shell pkg-config --libs opencv4 2>/dev/null)
 
-# Si no se encuentra pkg-config, puedes definir manualmente:
-# OPENCV_CFLAGS = -IC:/opencv/build/include
-# OPENCV_LIBS = -LC:/opencv/build/x64/vc15/lib -lopencv_core450 -lopencv_imgproc450 -lopencv_highgui450
-
 # Compilador
 CXX = g++
 CXXFLAGS = -std=c++11 $(OPENCV_CFLAGS)
