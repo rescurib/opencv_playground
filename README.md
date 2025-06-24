@@ -100,4 +100,7 @@ En MSYS2 con UCRT:
 * El Linker usa: libopencv_core.dll.a
 * Tu app usa en tiempo de ejecución: libopencv_core.dll
 
+>[!NOTE]
+> Referencia: **Head First C**, *David Griffiths*. Ch. 8 static and dynamic libraries.
+
 **Nota**: Ctrl+Shift+V para previsualizar Markdown en VSC.
