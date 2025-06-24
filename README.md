@@ -72,6 +72,7 @@ g++ ocv_install_verify.cpp -I C:/msys64/ucrt64/include/opencv4 -L C:/mysys2/ucrt
 ## Automaización del build
 
 `pkg-config` es una herramienta auxiliar que se utiliza al compilar aplicaciones y bibliotecas. Permite insertar las opciones correctas del compilador en la línea de comandos para que una aplicación pueda usar, por ejemplo, gcc -o test test.c `pkg-config --libs --cflags glib-2.0`, en lugar de codificar valores sobre dónde encontrar glib (u otras bibliotecas).
+
 Para ejecutar pkg-config desde CMD o PS se debe crear la siguiente variable de entorno:
 
 ```C
@@ -79,14 +80,14 @@ PKG_CONFIG_PATH = C:\mysys64\ucrt64\lib\pkgconfig
 ```
 En una aplicación más compleja con OpenCV se requerirá añadir diferentes flags para enlazar las librerías. Con está herramienta no tendrémos que preocuparnos por eso ya que encontrará a todas. Se puede usar directamente en nuestro Makefile:
 
-```C
+```Bash
 # Variables para OpenCV (ajustar según tu instalación si es necesario)
 # 2>/dev/null redirige stderr a /dev/null si pkg-config no está instalado
 OPENCV_CFLAGS = $(shell pkg-config --cflags opencv4 2>/dev/null)
 OPENCV_LIBS   = $(shell pkg-config --libs opencv4 2>/dev/null)
 ````
 
-**¿Por qué necesitamos estos flags?**
+**¿Por qué necesitamos estas flags?**
 
 Cuando utilizamos una función de OpenCV, por ejemplo `cv::imread()`, estamos haciendo un llamado a un archivo que está precompilado. En Linux estos objetos de librería tienen extenciones .so o .a y en Windows .dll. Se le debe indicar al Linker que archivos debe buscar para satisfacer los símbolos.
 
