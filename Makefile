@@ -5,7 +5,7 @@ PROJECT_NAME = ocv_install_verify
 SRC = $(PROJECT_NAME).cpp
 
 # Ejecutable de salida
-TARGET = $(PROJECT_NAME).exe
+TARGET = $(PROJECT_NAME)
 
 # Detectar OpenCV usando pkg-config (Linux/Mac) o variables de entorno (Windows)
 # Para Windows, se recomienda definir OPENCV_DIR y agregar las rutas de include/lib manualmente si no se usa pkg-config

@@ -1,4 +1,9 @@
-# Experimentos y notas sueltas sobre OpenCV
+# Experimentos y notas sueltas sobre OpenCV (C++)
+
+## Instalación en Linux Mint / Ubuntu
+```Bash
+sudo apt install libopencv-dev 
+```
 
 ## Instalación de OpenCV en Windows
 
