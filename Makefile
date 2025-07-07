@@ -1,5 +1,5 @@
 # Nombre del proyecto
-PROJECT_NAME = ocv_install_verify
+PROJECT_NAME = webcam_viewer
 
 # Archivos fuente
 SRC = $(PROJECT_NAME).cpp
