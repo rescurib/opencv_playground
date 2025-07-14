@@ -9,8 +9,8 @@ int main(int argc, char** argv) {
 
     // Elegir backend de video según plataforma
 #ifdef _WIN32
-    // Windows (puede usar DirectShow, MSMF o cualquiera por defecto)
-    cv::VideoCapture cap(cam_index);  // usa backend por defecto en Windows
+    // Windows (DirectShow, MSMF o cualquiera por defecto)
+    cv::VideoCapture cap(cam_index,cv::CAP_DSHOW); 
 #else
     // Linux (usar V4L2 para evitar problemas con GStreamer)
     cv::VideoCapture cap(cam_index, cv::CAP_V4L2);
